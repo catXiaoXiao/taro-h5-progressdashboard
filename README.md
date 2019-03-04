@@ -24,6 +24,7 @@ textContent内容 | '#fff' | '考试通过'
 
 ![image](https://github.com/catXiaoXiao/taro-h5-progressDashboard/blob/master/ProgressDashboard/logo1.png)
 ```jsx
-<MeDashboard percent={percent} />
+import ProgressDashboard from 'taro-h5-progressdashboard'
+<ProgressDashboard percent={percent} />
 
 
