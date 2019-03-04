@@ -20,3 +20,6 @@ percent | 进度值 | number
 text数字颜色 | '#fff'
 ```jsx
 <MeDashboard percent={percent} />
+
+效果图：
+[!image]https://github.com/catXiaoXiao/taro-h5-progressDashboard/blob/master/ProgressDashboard/logo.png
