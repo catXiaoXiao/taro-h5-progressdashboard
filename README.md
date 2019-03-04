@@ -21,7 +21,7 @@ text数字颜色 | '#fff'
 
 textContent内容 | '#fff' | '考试通过'
 
-![image](https://github.com/catXiaoXiao/taro-h5-progressDashboard/blob/master/ProgressDashboard/logo.png)
+![image](https://github.com/catXiaoXiao/taro-h5-progressDashboard/blob/master/ProgressDashboard/logo1.png)
 ```jsx
 <MeDashboard percent={percent} />
 
