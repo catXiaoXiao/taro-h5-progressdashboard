@@ -3,6 +3,7 @@ SVG画图，h5支持，微信小程序暂不支持，后续会写一个canvas版
 
 
 一些props:
+
 radius | 半径大小 | number,
 
 openWidth | 底缺口线条长度 | number,
