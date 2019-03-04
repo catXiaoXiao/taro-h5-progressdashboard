@@ -19,6 +19,8 @@ percent | 进度值 | number | 必传
 
 text数字颜色 | '#fff'
 
+textContent内容 | '#fff' | '考试通过'
+
 ![image](https://github.com/catXiaoXiao/taro-h5-progressDashboard/blob/master/ProgressDashboard/logo.png)
 ```jsx
 <MeDashboard percent={percent} />
