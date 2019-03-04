@@ -32,7 +32,7 @@ export default class ProgressDashboard extends Taro.Component {
     }, 10)
   }
   render() {
-    const { radius, openWidth, strokeWidth, trailColor, strokeColor, animatable } = this.props
+    const { radius, openWidth, strokeWidth, trailColor, strokeColor, animatable, textColor } = this.props
     const percent = animatable ? this.state.percent : this.props.percent
     const pathString = `M 50,50 m 0,${radius}
     a ${radius},${radius} 0 1 1 0,-${2 * radius}
@@ -61,9 +61,9 @@ export default class ProgressDashboard extends Taro.Component {
             stroke={trailColor}
             style={trailPathStyle}
           />
+          <text x="50%" y="50%" stroke={textColor} dominant-baseline="text-before-edge" style={{ fill: textColor, textAnchor: 'middle', dominantBaseline: 'middle', fontSize: '20px' }}>{percent}</text>
           <path
             d={pathString}
-            //strokeLinecap={strokeLinecap}
             stroke={strokeColor}
             strokeWidth={strokeWidth}
             fillOpacity="0"
@@ -83,4 +83,5 @@ ProgressDashboard.defaultProps = {
   strokeColor: '#fff',
   trailColor: 'rgba(255,255,255,0.2)',
   animatable: true,
+  textColor: '#fff',
 }
