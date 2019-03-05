@@ -1,10 +1,15 @@
-import Taro from '@tarojs/taro'
+import Taro from '@tarojs/taro-h5'
+import Nerv from 'nervjs'
 import { View } from '@tarojs/components'
 
 export default class ProgressDashboard extends Taro.Component {
-  state = {
-    percent: 0,
+  constructor(props) {
+    super(props)
+    this.state = {
+      percent: 0,
+    }
   }
+
   componentDidMount() {
     const { percent, animatable } = this.props
     if (animatable && percent !== this.state.percent) {
@@ -15,7 +20,7 @@ export default class ProgressDashboard extends Taro.Component {
     const { percent: oldData, animatable } = this.props
     const { percent: newData } = nextProps
     if (animatable && oldData !== newData) {
-      this.changePercent(newData)
+      this.changePercent(percent)
     }
   }
   changePercent = percent => {
@@ -32,7 +37,16 @@ export default class ProgressDashboard extends Taro.Component {
     }, 10)
   }
   render() {
-    const { radius, openWidth, strokeWidth, trailColor, strokeColor, animatable, textColor, textContent } = this.props
+    const {
+      radius,
+      openWidth,
+      strokeWidth,
+      trailColor,
+      strokeColor,
+      animatable,
+      textColor,
+      textContent,
+    } = this.props
     const percent = animatable ? this.state.percent : this.props.percent
     const pathString = `M 50,50 m 0,${radius}
     a ${radius},${radius} 0 1 1 0,-${2 * radius}
@@ -61,8 +75,33 @@ export default class ProgressDashboard extends Taro.Component {
             stroke={trailColor}
             style={trailPathStyle}
           />
-          <text x="50%" y="48%" stroke={textColor} dominant-baseline="text-before-edge" style={{ fill: textColor, textAnchor: 'middle', dominantBaseline: 'middle', fontSize: '29px' }}>{percent}</text>
-          <text x="50%" y="75%" dominant-baseline="text-before-edge" style={{ fill: textColor, textAnchor: 'middle', dominantBaseline: 'middle', fontSize: '8px' }}>{textContent}</text>
+          <text
+            x="50%"
+            y="48%"
+            stroke={textColor}
+            dominant-baseline="text-before-edge"
+            style={{
+              fill: textColor,
+              textAnchor: 'middle',
+              dominantBaseline: 'middle',
+              fontSize: '29px',
+            }}
+          >
+            {percent}
+          </text>
+          <text
+            x="50%"
+            y="75%"
+            dominant-baseline="text-before-edge"
+            style={{
+              fill: textColor,
+              textAnchor: 'middle',
+              dominantBaseline: 'middle',
+              fontSize: '8px',
+            }}
+          >
+            {textContent}
+          </text>
           <path
             d={pathString}
             stroke={strokeColor}
