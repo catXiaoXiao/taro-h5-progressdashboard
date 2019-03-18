@@ -1,15 +1,10 @@
-import Taro from '@tarojs/taro-h5'
-import Nerv from 'nervjs'
+import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-
+let addPercent = null
 export default class ProgressDashboard extends Taro.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      percent: 0,
-    }
+  state = {
+    percent: 0,
   }
-
   componentDidMount() {
     const { percent, animatable } = this.props
     if (animatable && percent !== this.state.percent) {
@@ -20,12 +15,17 @@ export default class ProgressDashboard extends Taro.Component {
     const { percent: oldData, animatable } = this.props
     const { percent: newData } = nextProps
     if (animatable && oldData !== newData) {
-      this.changePercent(percent)
+      this.changePercent(newData)
     }
   }
   changePercent = percent => {
     let initNumber = 0
-    const addPercent = setInterval(() => {
+    if (addPercent) clearInterval(addPercent)
+    if (percent === 0) {
+      this.setState({ percent: 0 })
+      return
+    }
+    addPercent = setInterval(() => {
       if (initNumber >= percent) {
         clearInterval(addPercent)
         return
@@ -97,7 +97,8 @@ export default class ProgressDashboard extends Taro.Component {
               fill: textColor,
               textAnchor: 'middle',
               dominantBaseline: 'middle',
-              fontSize: '8px',
+              fontSize: '7px',
+              opacity: 0.8,
             }}
           >
             {textContent}
@@ -118,8 +119,8 @@ export default class ProgressDashboard extends Taro.Component {
 
 ProgressDashboard.defaultProps = {
   radius: 45,
-  openWidth: 80,
-  strokeWidth: 6,
+  openWidth: 85,
+  strokeWidth: 5,
   strokeColor: '#fff',
   trailColor: 'rgba(255,255,255,0.2)',
   animatable: true,
